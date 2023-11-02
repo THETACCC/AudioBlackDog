@@ -308,6 +308,7 @@ public class GridCell
         blowUpFlag = true;
         for (int j = 0; j < 4; j++) {
             if (color == neighbs[j].color && !neighbs[j].blowUpFlag) {
+                AudioDirector.Instance.PlaySound(AudioDirector.Instance.blockExplode, false, AudioDirector.Instance.blockExplodeVolume,0.2f);
                 neighbs[j].BlowUp();
             }
         }
@@ -357,6 +358,7 @@ public class GridCell
         if (blowUpFlag) {
             Grid.me.score++;
             CameraControl.me.Flash(Global.me.blockColors[color]);
+
             myBlock.BlowUp();
             LoseBlock();
             blowUpFlag = false;

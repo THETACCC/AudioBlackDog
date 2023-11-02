@@ -87,6 +87,7 @@ public class FallingBlock : MonoBehaviour {
         partSys.transform.parent = null;
         partSys.Play();
         colNum = -1;
+
         Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D coll) {

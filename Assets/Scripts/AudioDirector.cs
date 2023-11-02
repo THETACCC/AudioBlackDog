@@ -68,6 +68,9 @@ public class AudioDirector : MonoBehaviour
     public AudioClip blockImpact;
     [Range(0f, 1f)] public float blockLandVolume = 1.0f;
 
+    public AudioClip blockExplode;
+    [Range(0f, 1f)] public float blockExplodeVolume = 1.0f;
+
     [Header("Loops and Background")] public AudioClip backgroundMusic;
     [Range(0f, 1f)] public float musicVolume = 1.0f;
     [Space(10)] 
@@ -117,6 +120,8 @@ public class AudioDirector : MonoBehaviour
             return;
         }
 
+
+        
         GameObject newSound = Instantiate(SoundPrefab, Vector3.zero, Quaternion.identity);
         AudioSource newSoundSource = newSound.GetComponent<AudioSource>();
 
@@ -144,7 +149,10 @@ public class AudioDirector : MonoBehaviour
             newSoundSource.outputAudioMixerGroup = actionSFX;
         }
 
-        newSoundSource.Play();
+        if (!newSoundSource.isPlaying)
+        {
+            newSoundSource.Play();
+        }
         Destroy(newSound, clipToPlay.length);
 
     }
@@ -194,7 +202,11 @@ public class AudioDirector : MonoBehaviour
         }
 
         //play the sound, and destroy the game object when finished
-        newSoundSource.Play();
+        if (!newSoundSource.isPlaying)
+        {
+            newSoundSource.Play();
+        }
+
         Destroy(newSound, newSoundSource.clip.length);
 
     }
