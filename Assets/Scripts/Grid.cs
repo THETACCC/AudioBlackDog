@@ -144,13 +144,13 @@ public class Grid : MonoBehaviour {
         bloop.GetComponent<SpriteRenderer>().color = Global.me.blockColors[num];
 
         //NewSound
-        AudioDirector.Instance.PlaySound(AudioDirector.Instance.blockPrepareDrop, true, bloop.transform.position.x, AudioDirector.Instance.blockPrepVolume);
+        AudioDirector.Instance.PlaySound(AudioDirector.Instance.blockPrepareDrop, true, bloop.transform.position.x, AudioDirector.Instance.blockPrepVolume,0.1f);
 
         yield return new WaitForSeconds(.5f);
         Instantiate(block, pos, Quaternion.identity).GetComponent<FallingBlock>().colNum = num;
 
         //NewSound
-        AudioDirector.Instance.PlaySound(AudioDirector.Instance.blockDrop, true, bloop.transform.position.x, AudioDirector.Instance.blockDropVolume);
+        AudioDirector.Instance.PlaySound(AudioDirector.Instance.blockDrop, true, bloop.transform.position.x, AudioDirector.Instance.blockDropVolume, 0.2f);
 
         yield return new WaitForSeconds(.2f);
         Destroy(bloop);
